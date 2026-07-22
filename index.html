@@ -398,6 +398,29 @@
     font-weight:700;
     font-size:14.5px;
   }
+  .upi-app-cta{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    margin-top:18px;
+    background:var(--gold);
+    color:var(--espresso);
+    text-decoration:none;
+    padding:14px;
+    border-radius:9px;
+    font-weight:700;
+    font-size:14.5px;
+  }
+  .or-divider{
+    text-align:center;
+    font-size:11.5px;
+    letter-spacing:.1em;
+    text-transform:uppercase;
+    color:var(--cream-2);
+    opacity:.6;
+    margin:14px 0 0;
+  }
   .steps-note{
     margin-top:20px;
     font-size:13px;
@@ -632,6 +655,11 @@
         <div class="upi-id">UPI ID: srisenthilnathan@okicici</div>
       </div>
 
+      <a href="#" id="upi-app-link" class="upi-app-cta" target="_blank">
+        Pay via UPI App (GPay / PhonePe / Paytm) →
+      </a>
+      <div class="or-divider">— or scan the QR above from another phone —</div>
+
       <a href="#" id="wa-link" class="whatsapp-cta" target="_blank">
         Send Payment Screenshot on WhatsApp →
       </a>
@@ -799,6 +827,9 @@
     document.getElementById('form-card').style.display = 'none';
     document.getElementById('payment-card').style.display = 'block';
     document.getElementById('amount-text').textContent = '₹' + amount.toLocaleString('en-IN');
+
+    const upiUrl = `upi://pay?pa=${UPI_ID}&pn=${encodeURIComponent(UPI_NAME)}&am=${amount}&cu=INR&tn=${encodeURIComponent('Cinematic Filmmaking Workshop - ' + name)}`;
+    document.getElementById('upi-app-link').href = upiUrl;
 
     const waMsg = `Hi, I've registered for the Cinematic Wedding Filmmaking Workshop.\nName: ${name}\nPhone: ${phone}\nAmount: ₹${amount}\nSending my payment screenshot now.`;
     document.getElementById('wa-link').href = `https://wa.me/${ORGANIZER_WHATSAPP}?text=${encodeURIComponent(waMsg)}`;
